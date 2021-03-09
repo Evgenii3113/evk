@@ -8,9 +8,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-
-@Data
 @Entity
+@Data
 @Table (schema = "public", name = "student" )
 public class StudentEntity {
 
@@ -31,6 +30,4 @@ public class StudentEntity {
 
     public StudentEntity() {
     }
-
-
 }

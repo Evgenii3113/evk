@@ -1,60 +1,46 @@
 package itmo.prl.evk.web;
 
 
-import itmo.prl.evk.db.entity.StudentEntity;
 import itmo.prl.evk.dto.Student;
 import itmo.prl.evk.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/students")
 public class StudentController {
 
+private  StudentService studentService;
 
-    @Autowired
-    private StudentService studentService;
-
-    @GetMapping("/")
-    public Iterable<StudentEntity> allStudents (Model model){
-        Iterable<StudentEntity> studentList = studentService.listAll();
-        model.addAttribute("students", studentList);
-        return studentList;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
 
-    @PostMapping("/new")
-    public String createStudent (Student student) {
-        studentService.saveStudent(student);
-        return "redirect:/index";
-    }
-
-    @GetMapping
-    @RequestMapping("/{id}")
-    public Student readStudent (@PathVariable (name = "id") Integer id, String surname, String name) {
-        studentService.getStudent(id);
-        return  new Student(id, name, surname);
-    }
-
-    @RequestMapping("/save")
-    public String saveStudent (@ModelAttribute ("student") Student student){
-        studentService.saveStudent(student);
-        return "redirect:/";
+    @PostMapping("/newStudents")
+   public Student saveStd (@RequestBody Student student) {
+       return studentService.saveStudent(student);
    }
+    @GetMapping("/allStudents")
+    public List<Student> findAllStd(){
+        return studentService.findAll();
+    }
 
-   @RequestMapping("/edit/{id}")
-    public ModelAndView editStudent (@PathVariable (name = "id") Integer id){
-        ModelAndView stud = new ModelAndView("new");
-        StudentEntity student = studentService.getStudent(id);
-        stud.addObject("student", student);
-        return stud;
-   }
 
-   @RequestMapping("/delete/{id}")
-    public String deleteStudent (@PathVariable (name = "id") Integer id){
+   @GetMapping("/findStudent")
+   public Student readStd (@RequestParam String surname) {
+        return studentService.findBySurname(surname);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteStd (@PathVariable Integer id){
         studentService.deleteStudent(id);
-        return "Delete";
-   }
+        return (ResponseEntity<Void>) ResponseEntity.ok();
+    }
+
+
+
 
 }

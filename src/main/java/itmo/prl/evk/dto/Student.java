@@ -5,7 +5,8 @@ import itmo.prl.evk.db.entity.StudentEntity;
 import lombok.*;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student extends StudentEntity {
 
     private Integer id;
@@ -15,9 +16,6 @@ public class Student extends StudentEntity {
     private String email;
     private String phone;
 
-
-    public Student(Integer id, String name, String surname) {
-    }
 }
 
 
