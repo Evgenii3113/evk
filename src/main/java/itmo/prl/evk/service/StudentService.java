@@ -4,6 +4,7 @@ package itmo.prl.evk.service;
 import itmo.prl.evk.db.entity.StudentEntity;
 import itmo.prl.evk.db.repo.StudentRepo;
 import itmo.prl.evk.dto.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,12 +13,14 @@ import java.util.List;
 @Service
 public class StudentService {
 
-    private StudentRepo studentRepo;
+private final StudentRepo studentRepo;
+
+    public StudentService(StudentRepo studentRepo) {
+        this.studentRepo = studentRepo;
+    }
 
 
-
-
-    public Student saveStudent(Student student) {
+    public StudentEntity saveStudent(Student student) {
         StudentEntity student1 = new StudentEntity();
         student1.setId(student.getId());
         student1.setName(student.getName());
@@ -26,14 +29,15 @@ public class StudentService {
         student1.setEmail(student.getEmail());
         student1.setPhone(student.getPhone());
         StudentEntity studentEntity = studentRepo.save(student1);
-        Student student2 = new Student();
-        student2.setId(studentEntity.getId());
-        student2.setName(studentEntity.getName());
-        student2.setSurname(studentEntity.getSurname());
-        student2.setSecondName(studentEntity.getSecondName());
-        student2.setEmail(studentEntity.getEmail());
-        student2.setPhone(studentEntity.getPhone());
-        return student2;
+        return studentEntity;
+//        Student student2 = new Student();
+//        student2.setId(studentEntity.getId());
+//        student2.setName(studentEntity.getName());
+//        student2.setSurname(studentEntity.getSurname());
+//        student2.setSecondName(studentEntity.getSecondName());
+//        student2.setEmail(studentEntity.getEmail());
+//        student2.setPhone(studentEntity.getPhone());
+        //return studentEntity;
     }
 
     public void deleteStudent(Integer id) {
@@ -67,38 +71,18 @@ public class StudentService {
             students.add(student);
         }
         return students;
-    }
-}
+   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    @Autowired
+    //    @Autowired
 //    private StudentRepo studentRepo;
 //
 //
 //
-//       public Iterable<StudentEntity> listAll(){
+//    public Iterable<StudentEntity> findAll() {
 //        return studentRepo.findAll();
-//    }
+    }
+
 //
 //    public void saveStudent(Student student) {
 //        studentRepo.save(student);
