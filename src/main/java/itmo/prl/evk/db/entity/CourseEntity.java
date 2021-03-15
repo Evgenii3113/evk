@@ -9,16 +9,16 @@ import java.util.List;
 
 @Entity
 @Data
-@Table (schema = "public", name = "cours")
-public class CoursEntity<studentEntityList> {
+@Table (schema = "public", name = "course")
+public class CourseEntity {
 
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name = "cours_id")
+    @Column(name = "course_id")
     private Integer id;
-    @Column(name = "cours_name")
-    private String coursName;
+    @Column(name = "course_name")
+    private String courseName;
     @Column(name = "start_date")
     private Date startDate;
 
@@ -26,12 +26,12 @@ public class CoursEntity<studentEntityList> {
     @JoinColumn(name = "idCours")
     private List<StudentEntity> studentEntityList;
 
-    public CoursEntity() {
+    public CourseEntity() {
     }
 
-    public CoursEntity(Integer id, String coursName, Date startDate) {
+    public CourseEntity(Integer id, String courseName, Date startDate) {
         this.id = id;
-        this.coursName = coursName;
+        this.courseName = courseName;
         this.startDate = startDate;
     }
 

@@ -26,25 +26,20 @@ public class StudentEntity {
     private String email;
     @Column
     private String phone;
+    @Column
+    private Integer coursId;
 
     public StudentEntity() {
     }
 
-    public StudentEntity(String surname, String name, String secondName, String email, String phone) {
-        this.surname = surname;
-        this.name = name;
-        this.secondName = secondName;
-        this.email = email;
-        this.phone = phone;
-    }
-
-    public StudentEntity(Integer id, String surname, String name, String secondName, String email, String phone) {
+    public StudentEntity(Integer id, String surname, String name, String secondName, String email, String phone, Integer coursId) {
         this.id = id;
         this.surname = surname;
         this.name = name;
         this.secondName = secondName;
         this.email = email;
         this.phone = phone;
+        this.coursId = coursId;
     }
 
     public Integer getId() {
@@ -93,5 +88,13 @@ public class StudentEntity {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Integer getCoursId() {
+        return coursId;
+    }
+
+    public void setCoursId(Integer coursId) {
+        this.coursId = coursId;
     }
 }

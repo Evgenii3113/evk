@@ -12,7 +12,7 @@
 
 
 
-<a href="${pageContext.request.contextPath}/studentList">Список студентов</a>
+<a href="${pageContext.request.contextPath}/studentList">Student List</a>
 
 </body>
 

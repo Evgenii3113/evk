@@ -1,25 +1,25 @@
 package itmo.prl.evk.dto;
 
 
-import itmo.prl.evk.db.entity.CoursEntity;
+import itmo.prl.evk.db.entity.CourseEntity;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class Cours extends CoursEntity {
+public class Course extends CourseEntity {
 
     private Integer id;
     private String courseName;
     private Date startDate;
 
-    public Cours(Integer id, String courseName, Date startDate) {
+    public Course(Integer id, String courseName, Date startDate) {
         this.id = id;
         this.courseName = courseName;
         this.startDate = startDate;
     }
 
-    public Cours() {
+    public Course() {
     }
 }
 
