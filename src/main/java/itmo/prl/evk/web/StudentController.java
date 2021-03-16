@@ -30,16 +30,15 @@ private  final StudentService studentService;
         return studentService.findAll();
     }
 
-
    @GetMapping("/find")
    public Student readStd (@RequestParam String surname) {
         return studentService.findBySurname(surname);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/remove/{id}")
     public String deleteStd (@PathVariable Integer id){
         studentService.deleteStudent(id);
-        return "Student deleted";
+        return "Student removed";
     }
 
 

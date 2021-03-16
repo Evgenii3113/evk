@@ -2,10 +2,12 @@ package itmo.prl.evk.service;
 
 
 import itmo.prl.evk.db.entity.CourseEntity;
+import itmo.prl.evk.db.entity.StudentEntity;
 import itmo.prl.evk.db.repo.CourseRepo;
 import itmo.prl.evk.dto.Course;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class CourseService {
     }
 
 
-    public CourseEntity saveCourse (Course course) {
+    public CourseEntity saveCourse(Course course) {
         CourseEntity courseEntity = courseRepo.save(createCourseEntity(course));
         return courseEntity;
     }
@@ -56,5 +58,13 @@ public class CourseService {
         course.setCourseName(courseEntity.getCourseName());
         course.setStartDate(courseEntity.getStartDate());
         return course;
+    }
+
+    @PostConstruct
+    public void init() {
+        Iterable<CourseEntity> courseEntities = courseRepo.findAll();
+        for (CourseEntity courseEntity : courseEntities) {
+            System.out.println(courseEntity.toString());
+        }
     }
 }

@@ -10,14 +10,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/courses")
-public class CoursController {
+public class CourseController {
 
 private  final CourseService courseService;
 
-    public CoursController(CourseService courseService) {
+    public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
-
 
     @PostMapping("/new")
    public CourseEntity saveStd (@RequestBody Course course) {
@@ -25,21 +24,19 @@ private  final CourseService courseService;
    }
 
     @GetMapping("/all")
-    public List<Course> findAllCours(){
+    public List<Course> findAllCourse(){
         return courseService.findAll();
     }
-
 
    @GetMapping("/find")
    public Course readCourse (@RequestParam String courseName) {
         return courseService.findByCourseName(courseName);
     }
 
-
-    @DeleteMapping("/delete/{id}")
-    public String deleteCours (@PathVariable Integer id){
+    @DeleteMapping("/remove/{id}")
+    public String deleteCourse (@PathVariable Integer id){
         courseService.deleteCourse(id);
-        return "Course deleted";
+        return "Course removed";
     }
 
 

@@ -13,16 +13,16 @@ public class Student extends StudentEntity {
     private String secondName;
     private String email;
     private String phone;
-    private Integer coursId;
 
-    public Student(Integer id, String surname, String name, String secondName, String email, String phone, Integer coursId) {
+
+    public Student(Integer id, String surname, String name, String secondName, String email, String phone) {
         this.id = id;
         this.surname = surname;
         this.name = name;
         this.secondName = secondName;
         this.email = email;
         this.phone = phone;
-        this.coursId = coursId;
+
     }
 
     public Student() {
@@ -76,13 +76,7 @@ public class Student extends StudentEntity {
         this.phone = phone;
     }
 
-    public Integer getCoursId() {
-        return coursId;
-    }
 
-    public void setCoursId(Integer coursId) {
-        this.coursId = coursId;
-    }
 }
 
 
