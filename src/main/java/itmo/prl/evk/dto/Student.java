@@ -28,6 +28,9 @@ public class Student extends StudentEntity {
     public Student() {
     }
 
+    public Student(String surname, String name, String secondName) {
+    }
+
     public Integer getId() {
         return id;
     }
@@ -44,7 +47,7 @@ public class Student extends StudentEntity {
         this.surname = surname;
     }
 
-    public String getName() {
+        public String getName() {
         return name;
     }
 
