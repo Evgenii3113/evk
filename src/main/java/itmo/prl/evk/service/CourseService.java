@@ -21,8 +21,7 @@ public class CourseService {
 
 
     public CourseEntity saveCourse(Course course) {
-        CourseEntity courseEntity = courseRepo.save(createCourseEntity(course));
-        return courseEntity;
+        return courseRepo.save(createCourseEntity(course));
     }
 
     public void deleteCourse(Integer id) {

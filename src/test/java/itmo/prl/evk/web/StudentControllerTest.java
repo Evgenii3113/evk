@@ -59,7 +59,7 @@ public class StudentControllerTest {
     @Test
     public void readStd() throws Exception {
         Student student = new Student();
-        String surname = "Vetrov";
+        String surname = "Smirnov";
         String content = objectMapper.writeValueAsString(student);
         System.out.println(content);
         String uri = "/students/find";
@@ -68,7 +68,7 @@ public class StudentControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(content))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Sergei"))
+                .andExpect(jsonPath("$.name").value("Dmitrii"))
                 .andDo(document(uri));
     }
 
