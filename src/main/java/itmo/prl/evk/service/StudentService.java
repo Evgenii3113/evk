@@ -4,10 +4,9 @@ package itmo.prl.evk.service;
 import itmo.prl.evk.db.entity.StudentEntity;
 import itmo.prl.evk.db.repo.StudentRepo;
 import itmo.prl.evk.dto.Student;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
+
 import java.util.ArrayList;
 import java.util.List;
 

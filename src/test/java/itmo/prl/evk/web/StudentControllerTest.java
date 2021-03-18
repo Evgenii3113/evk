@@ -3,6 +3,9 @@ package itmo.prl.evk.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+import itmo.prl.evk.db.repo.StudentRepo;
+import itmo.prl.evk.dto.Student;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -13,7 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.JUnitRestDocumentation;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.ConfigurableMockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -23,6 +25,7 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -38,6 +41,9 @@ public class StudentControllerTest {
     @Autowired
     ObjectMapper objectMapper;
 
+    @Autowired
+    StudentRepo studentRepo;
+
     @Rule
     public JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("target/generated-snippets");
 
@@ -51,33 +57,38 @@ public class StudentControllerTest {
 
 
     @Test
-    public void sayBye() throws Exception {
-        String uri = "/";
-        mockMvc.perform(get(uri))
+    public void readStd() throws Exception {
+        Student student = new Student();
+        String surname = "Vetrov";
+        String content = objectMapper.writeValueAsString(student);
+        System.out.println(content);
+        String uri = "/students/find";
+        mockMvc.perform(get(uri)
+                .param("surname", surname)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(content))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Sergei"))
                 .andDo(document(uri));
     }
 
-    @Test
-    public void sayHello() throws Exception {
-        String urlTemplate = "/greetings/hello";
-        mockMvc.perform(get(urlTemplate)
-                .param("name", "Ivan"))
-                .andExpect(status().isOk())
-                .andDo(document(urlTemplate));
-    }
 
-//    @Test
-//    public void postUser() throws Exception {
-//        Representation representation = new Representation();
-//        representation.setName("Ivan");
-//        String content = objectMapper.writeValueAsString(representation);
-//        System.out.println(content);
-//        String uri = "/greetings/returnWithId";
-//        mockMvc.perform(post(uri)
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(content))
-//                .andExpect(status().isOk())
-//                .andDo(document(uri));
-//    }
+    @Test
+    public void saveStd() throws Exception {
+        Student student = new Student();
+        student.setSurname("Smirnov");
+        student.setName("Igor");
+        student.setSecondName("Girovich");
+        student.setPhone("89213564585");
+        student.setEmail("smi@ya.ru");
+        String content = objectMapper.writeValueAsString(student);
+        System.out.println(content);
+        String uri = "/students/new";
+        mockMvc.perform(post(uri)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(content))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Igor"))
+                .andDo(document(uri));
+    }
 }

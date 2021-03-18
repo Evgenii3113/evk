@@ -12,32 +12,30 @@ import java.util.List;
 @RequestMapping("/courses")
 public class CourseController {
 
-private  final CourseService courseService;
+    private final CourseService courseService;
 
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
 
     @PostMapping("/new")
-   public CourseEntity saveStd (@RequestBody Course course) {
-       return courseService.saveCourse(course);
-   }
+    public CourseEntity saveStd(@RequestBody Course course) {
+        return courseService.saveCourse(course);
+    }
 
     @GetMapping("/all")
-    public List<Course> findAllCourse(){
+    public List<Course> findAllCourse() {
         return courseService.findAll();
     }
 
-   @GetMapping("/find")
-   public Course readCourse (@RequestParam String courseName) {
+    @GetMapping("/find")
+    public Course readCourse(@RequestParam String courseName) {
         return courseService.findByCourseName(courseName);
     }
 
     @DeleteMapping("/remove/{id}")
-    public String deleteCourse (@PathVariable Integer id){
+    public String deleteCourse(@PathVariable Integer id) {
         courseService.deleteCourse(id);
         return "Course removed";
     }
-
-
 }
