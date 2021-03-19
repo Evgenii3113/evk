@@ -11,9 +11,11 @@ spring:
   flyway:
     baselineOnMigrate: true
     locations: filesystem:db/migration
-  datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: Astrabel-2018
-    driver-class-name: org.postgresql.Driver
+
+
+datasource:
+  url: jdbc:postgresql://localhost:5432/postgres
+  username: postgres
+  password: Astrabel-2018
+  driver-class-name: org.postgresql.Driver
 

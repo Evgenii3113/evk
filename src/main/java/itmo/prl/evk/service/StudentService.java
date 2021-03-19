@@ -72,14 +72,12 @@ public class StudentService {
         return student;
     }
 
-    public List<Student> findByCourse (Integer id){
+    public List<Student> findByCourse (){
         List<Student> students = new ArrayList<>();
-        Iterable<StudentEntity>studentEntity = studentRepo.findByCourse(id);
-        for (StudentEntity entity : studentEntity) {
-            students.add(createStudent((StudentEntity) studentEntity));
+        List<StudentEntity> studentEntityList = studentRepo.findByCourse();
+        for (StudentEntity studentEntity : studentEntityList) {
+            students.add(createStudent(studentEntity));
         }
-
-
         return students;
 
     }
