@@ -2,6 +2,7 @@ package itmo.prl.evk.service;
 
 
 import itmo.prl.evk.db.entity.StudentEntity;
+import itmo.prl.evk.db.repo.CourseRepo;
 import itmo.prl.evk.db.repo.StudentRepo;
 import itmo.prl.evk.dto.Student;
 import org.springframework.stereotype.Service;
@@ -9,15 +10,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
 
     private final StudentRepo studentRepo;
+    private final CourseRepo courseRepo;
 
-    public StudentService(StudentRepo studentRepo) {
+    public StudentService(StudentRepo studentRepo, CourseRepo courseRepo) {
         this.studentRepo = studentRepo;
+        this.courseRepo = courseRepo;
     }
+
 
 
     public StudentEntity saveStudent(Student student) {
@@ -65,6 +70,18 @@ public class StudentService {
         student.setPhone(studentEntity.getPhone());
 
         return student;
+    }
+
+    public List<Student> findByCourse (Integer id){
+        List<Student> students = new ArrayList<>();
+        Iterable<StudentEntity>studentEntity = studentRepo.findByCourse(id);
+        for (StudentEntity entity : studentEntity) {
+            students.add(createStudent((StudentEntity) studentEntity));
+        }
+
+
+        return students;
+
     }
 
 }

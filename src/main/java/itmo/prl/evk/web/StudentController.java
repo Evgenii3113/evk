@@ -40,4 +40,9 @@ public class StudentController {
         studentService.deleteStudent(id);
         return "Student removed";
     }
+    @GetMapping("/allstd/{id}")
+    public List<Student> findByCourse(@PathVariable Integer id){
+        return studentService.findByCourse(id);
+
+    }
 }
