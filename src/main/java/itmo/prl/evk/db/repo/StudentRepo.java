@@ -16,7 +16,7 @@ public interface StudentRepo extends CrudRepository<StudentEntity, Integer> {
 
     StudentEntity findBySurname (String surname);
 
-    @Query("select s from StudentEntity s join CourseEntity c on s.curs_id = c.id")
+    @Query("select s from StudentEntity s where s.courseId = :id ")
     List<StudentEntity> findByCourse(Integer id);
 
 }

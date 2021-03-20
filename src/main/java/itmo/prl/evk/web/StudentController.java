@@ -40,9 +40,11 @@ public class StudentController {
         studentService.deleteStudent(id);
         return "Student removed";
     }
-    @GetMapping("/allstd")
-    public List<Student> findByCourse(){
-        return studentService.findByCourse();
 
-    }
+//    @GetMapping("/allstd")
+//    public List<Student> findByCourse(@RequestParam Integer id) {
+//        return studentService.findByCourse(id);
+//
+//    }
 }
+

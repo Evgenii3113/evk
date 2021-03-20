@@ -23,7 +23,7 @@ public class CourseEntity {
     private Date startDate;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "curs_id")
+    @JoinColumn(name = "course_Id")
     private List<StudentEntity> studentEntityList;
 
     public CourseEntity() {

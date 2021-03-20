@@ -72,17 +72,18 @@ public class StudentService {
         return student;
     }
 
-    public List<Student> findByCourse (){
-        List<Student> students = new ArrayList<>();
-        List<StudentEntity> studentEntityList = studentRepo.findByCourse();
-        for (StudentEntity studentEntity : studentEntityList) {
-            students.add(createStudent(studentEntity));
-        }
-        return students;
+//    public List<Student> findByCourse (Integer id) {
+//        List<Student> students = new ArrayList<>();
+//        List<StudentEntity> studentEntityList = studentRepo.findByCourse(id);
+//        for (StudentEntity studentEntity : studentEntityList) {
+//            students.add(createStudent(studentEntity));
+//        }
+//        return students;
+//    }
 
     }
 
-}
+
 
 
 

@@ -2,8 +2,10 @@ package itmo.prl.evk.service;
 
 
 import itmo.prl.evk.db.entity.CourseEntity;
+import itmo.prl.evk.db.entity.StudentEntity;
 import itmo.prl.evk.db.repo.CourseRepo;
 import itmo.prl.evk.dto.Course;
+import itmo.prl.evk.dto.Student;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -57,6 +59,8 @@ public class CourseService {
         course.setStartDate(courseEntity.getStartDate());
         return course;
     }
+
+
 
 
 

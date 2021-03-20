@@ -23,8 +23,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -59,16 +58,16 @@ public class StudentControllerTest {
     @Test
     public void readStd() throws Exception {
         Student student = new Student();
-        String surname = "Smirnov";
+        student.setSurname("Smirnov");
         String content = objectMapper.writeValueAsString(student);
         System.out.println(content);
         String uri = "/students/find";
         mockMvc.perform(get(uri)
-                .param("surname", surname)
+                .param("surname", student.getSurname())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(content))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Dmitrii"))
+                .andExpect(jsonPath("$.name").value("Egor"))
                 .andDo(document(uri));
     }
 
@@ -91,4 +90,19 @@ public class StudentControllerTest {
                 .andExpect(jsonPath("$.name").value("Igor"))
                 .andDo(document(uri));
     }
+
+    @Test
+    public void removeStd() throws Exception {
+        Student student = new Student();
+        student.setId(4);
+        String content = objectMapper.writeValueAsString(student);
+        System.out.println(content);
+        String uri = "/students/remove/{id}";
+        mockMvc.perform(delete(uri, student.getId())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(content))
+                .andExpect(status().isOk())
+                .andDo(document(uri));
+    }
+
 }

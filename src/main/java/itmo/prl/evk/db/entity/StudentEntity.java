@@ -25,5 +25,7 @@ public class StudentEntity {
     private String email;
     @Column
     private String phone;
+    @Column (name = "course_id")
+    private Integer courseId;
 
 }
