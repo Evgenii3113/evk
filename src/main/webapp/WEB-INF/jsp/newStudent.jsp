@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,26 +13,54 @@
 
         <div class="form-group">
 
+
         <div class="col-md-4">
-            <textarea class="form-control" name="surname">
-                   Surname
+
+            <span style="font-family:'Courier New', monospace; padding-right:48px";>Surname:</span>
+            <input type="text" textarea class="form-control" name="surname">
+        </textarea>
+
+            <br>
+
+            <span style="font-family:'Courier New', monospace; padding-right:77px";>Name:</span>
+            <input type="text" textarea class="form-control" name="name">
             </textarea>
-            <textarea class="form-control" name="name">
-                   Name
+
+            <br>
+
+            <span style="font-family:'Courier New', monospace; padding-right:10px";>Second name:</span>
+            <input type="text" textarea class="form-control" name="secondName">
             </textarea>
-            <textarea class="form-control" name="secondName">
-                   Second name
+
+            <br>
+
+            <span style="font-family:'Courier New', monospace; padding-right:0px";>Phone number:</span>
+            <input type="tel" textarea class="form-control" name="phone">
             </textarea>
-            <textarea class="form-control" name="phone">
-                   Phone number
+
+            <br>
+
+            <span style="font-family:'Courier New', monospace; padding-right:58px";>E-mail:</span>
+            <input type="email" textarea class="form-control" name="email">
             </textarea>
-            <textarea class="form-control" name="email">
-                   E-mail
-            </textarea>
-        </div>
+
+            <br>
+
+            <span style="font-family:'Courier New', monospace; padding-right:58px";>Course:</span>
+            <select input type="text" class="form-control" name="course">
+                       <option>Select course</option>
+                       <option>1 - Management</option>
+                       <option>2 - Coach</option>
+                       <option>3 - Developer</option>
+                       <option>4 - Sports</option>
+                       </select>
+
+            <br>
     </div>
+        </div>
     <br>
     <input type="submit" value="Create">
+
 </form>
 
 <script src="/js/main.js"></script>
