@@ -47,12 +47,12 @@
             <br>
 
             <span style="font-family:'Courier New', monospace; padding-right:58px";>Course:</span>
-            <select input type="text" class="form-control" name="course">
+            <select input type="int" class="form-control" name="courseId">
                        <option>Select course</option>
-                       <option>1 - Management</option>
-                       <option>2 - Coach</option>
-                       <option>3 - Developer</option>
-                       <option>4 - Sports</option>
+                       <option>1</option>
+                       <option>2</option>
+                       <option>3</option>
+                       <option>4</option>
                        </select>
 
             <br>

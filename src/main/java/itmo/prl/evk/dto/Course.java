@@ -12,5 +12,8 @@ public class Course extends CourseEntity {
     private Integer id;
     private String courseName;
     private Date startDate;
+
+
+
 }
 

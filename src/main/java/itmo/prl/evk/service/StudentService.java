@@ -48,38 +48,38 @@ public class StudentService {
         return students;
     }
 
+    public List<Student> findByCourse (Integer id) {
+        List<Student> students = new ArrayList<>();
+        List<StudentEntity> studentEntityList = studentRepo.findByCourse(id);
+        for (StudentEntity studentEntity : studentEntityList) {
+            students.add(createStudent(studentEntity));
+        }
+        return students;
+    }
+
     private StudentEntity createStudentEntity(Student student) {
         StudentEntity studentEntity = new StudentEntity();
-        studentEntity.setId(student.getId());
-        studentEntity.setName(student.getName());
-        studentEntity.setSurname(student.getSurname());
-        studentEntity.setSecondName(student.getSecondName());
-        studentEntity.setEmail(student.getEmail());
-        studentEntity.setPhone(student.getPhone());
+        return getStudentEntity(studentEntity, student.getId(), student.getName(), student.getSurname(), student.getSecondName(), student.getEmail(), student.getPhone(), student.getCourseId(), student);
+    }
+
+    private StudentEntity getStudentEntity(StudentEntity studentEntity, Integer id, String name, String surname, String secondName, String email, String phone, Integer courseId, Student student) {
+        studentEntity.setId(id);
+        studentEntity.setName(name);
+        studentEntity.setSurname(surname);
+        studentEntity.setSecondName(secondName);
+        studentEntity.setEmail(email);
+        studentEntity.setPhone(phone);
+        studentEntity.setCourseId(courseId);
 
         return studentEntity;
     }
 
     private Student createStudent(StudentEntity studentEntity) {
         Student student = new Student();
-        student.setId(studentEntity.getId());
-        student.setName(studentEntity.getName());
-        student.setSurname(studentEntity.getSurname());
-        student.setSecondName(studentEntity.getSecondName());
-        student.setEmail(studentEntity.getEmail());
-        student.setPhone(studentEntity.getPhone());
-
-        return student;
+        return (Student) getStudentEntity(student, studentEntity.getId(), studentEntity.getName(), studentEntity.getSurname(), studentEntity.getSecondName(), studentEntity.getEmail(), studentEntity.getPhone(), studentEntity.getCourseId(), student);
     }
 
-//    public List<Student> findByCourse (Integer id) {
-//        List<Student> students = new ArrayList<>();
-//        List<StudentEntity> studentEntityList = studentRepo.findByCourse(id);
-//        for (StudentEntity studentEntity : studentEntityList) {
-//            students.add(createStudent(studentEntity));
-//        }
-//        return students;
-//    }
+
 
     }
 

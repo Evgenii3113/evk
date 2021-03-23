@@ -12,6 +12,8 @@
             <th>Second Name</th>
             <th>Phone Number</th>
             <th>E-mail</th>
+            <th>Course</th>
+            <th>Course name</th>
                     </tr>
         <c:forEach  items="${student}" var ="student">
             <tr>
@@ -20,6 +22,8 @@
                 <td>${student.secondName}</td>
                 <td>${student.phone}</td>
                 <td>${student.email}</td>
+                <td>${student.courseId}</td>
+                <td>${course.courseName}</td>
             </tr>
         </c:forEach>
     </table>

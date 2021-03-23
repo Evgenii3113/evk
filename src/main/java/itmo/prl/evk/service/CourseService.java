@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseService {
@@ -42,6 +43,11 @@ public class CourseService {
             courseList.add(createCourse(courseEntity));
         }
         return courseList;
+    }
+
+    public String courseNameById (Integer id){
+        CourseEntity courseEntity = courseRepo.findById(id);
+       return courseEntity.getCourseName();
     }
 
     private CourseEntity createCourseEntity(Course course) {

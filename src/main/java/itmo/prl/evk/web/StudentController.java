@@ -41,10 +41,10 @@ public class StudentController {
         return "Student removed";
     }
 
-//    @GetMapping("/allstd")
-//    public List<Student> findByCourse(@RequestParam Integer id) {
-//        return studentService.findByCourse(id);
-//
-//    }
+    @GetMapping("/allstd")
+    public List<Student> findByCourse(@RequestParam Integer id) {
+        return studentService.findByCourse(id);
+
+    }
 }
 
