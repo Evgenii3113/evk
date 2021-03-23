@@ -45,10 +45,6 @@ public class CourseService {
         return courseList;
     }
 
-    public String courseNameById (Integer id){
-        CourseEntity courseEntity = courseRepo.findById(id);
-       return courseEntity.getCourseName();
-    }
 
     private CourseEntity createCourseEntity(Course course) {
         CourseEntity courseEntity = new CourseEntity();

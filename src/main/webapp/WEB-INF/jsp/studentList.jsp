@@ -23,7 +23,6 @@
                 <td>${student.phone}</td>
                 <td>${student.email}</td>
                 <td>${student.courseId}</td>
-                <td>${course.courseName}</td>
             </tr>
         </c:forEach>
     </table>

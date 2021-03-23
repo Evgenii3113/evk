@@ -26,7 +26,7 @@ public class PageController {
     public String viewStudentList(Model model) {
 
         model.addAttribute("student", studentService.findAll());
-        model.addAttribute("course",)
+        model.addAttribute("course",courseService.findAll());
 
         return "studentList";
     }
