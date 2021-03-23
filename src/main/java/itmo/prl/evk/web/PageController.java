@@ -26,7 +26,7 @@ public class PageController {
     public String viewStudentList(Model model) {
 
         model.addAttribute("student", studentService.findAll());
-        model.addAttribute("course",courseService.findAll());
+
 
         return "studentList";
     }
@@ -38,23 +38,24 @@ public class PageController {
     }
 
     @RequestMapping(value = {"/newStudent"}, method = RequestMethod.POST)
-    public String saveStudent(@RequestParam String surname, String name, String secondName, String phone, String email, Integer courseId, Model model) {
+    public String saveStudent(@RequestParam String surname, String name, String secondName, String phone, String email, Model model) {
         model.addAttribute("surname", surname)
                 .addAttribute("name", name)
                 .addAttribute("secondName", secondName)
                 .addAttribute("phone", phone)
-                .addAttribute("email", email)
-                .addAttribute("courseId", courseId);
+                .addAttribute("email", email);
         Student student = new Student();
         student.setSurname(surname.trim());
         student.setName(name.trim());
         student.setSecondName(secondName.trim());
         student.setPhone(phone.trim());
         student.setEmail(email.trim());
-        student.setCourseId(courseId);
+
         studentService.saveStudent(student);
 
         return "redirect:/studentList";
     }
+
+
 
 }

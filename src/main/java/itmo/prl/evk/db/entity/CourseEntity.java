@@ -22,9 +22,9 @@ public class CourseEntity {
     @Column(name = "start_date")
     private Date startDate;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "course_Id")
-    private List<StudentEntity> studentEntityList;
+//    @OneToMany(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "course_Id")
+//    private List<StudentEntity> studentEntityList;
 
     public CourseEntity() {
     }

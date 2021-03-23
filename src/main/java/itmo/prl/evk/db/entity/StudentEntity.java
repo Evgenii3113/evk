@@ -5,6 +5,7 @@ import lombok.Data;
 
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Data
@@ -12,7 +13,6 @@ import javax.persistence.*;
 public class StudentEntity {
 
     @Id
-    @Column(name = "student_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
@@ -25,7 +25,8 @@ public class StudentEntity {
     private String email;
     @Column
     private String phone;
-    @Column (name = "course_id")
-    private Integer courseId;
+    @JoinColumn (name = "student_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    private Collection<CourseAssignament> courseAssignaments;
 
 }
