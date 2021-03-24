@@ -27,6 +27,6 @@ public class StudentEntity {
     private String phone;
     @JoinColumn (name = "student_id")
     @OneToMany(cascade = CascadeType.ALL)
-    private Collection<CourseAssignament> courseAssignaments;
+    private Collection<CourseAssignment> courseAssignments;
 
 }

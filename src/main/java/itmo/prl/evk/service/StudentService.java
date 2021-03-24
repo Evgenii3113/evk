@@ -1,7 +1,7 @@
 package itmo.prl.evk.service;
 
 
-import itmo.prl.evk.db.entity.CourseAssignament;
+import itmo.prl.evk.db.entity.CourseAssignment;
 import itmo.prl.evk.db.entity.CourseEntity;
 import itmo.prl.evk.db.entity.StudentEntity;
 import itmo.prl.evk.db.repo.CourseRepo;
@@ -85,20 +85,20 @@ public class StudentService {
     }
 
 
-    @PostConstruct
-    public void init() {
-        StudentEntity studentEntity = new StudentEntity();
-        StudentEntity savedStudent = studentRepo.save(studentEntity);
-
-        CourseEntity courseEntity = new CourseEntity();
-        CourseEntity courseWithId = courseRepo.save(courseEntity);
-        CourseAssignament courseAssignament = new CourseAssignament();
-        courseAssignament.setCourseEntity(courseWithId);
-        savedStudent.setCourseAssignaments(Arrays.asList(courseAssignament));
-        studentRepo.save(savedStudent);
-        System.out.println("");
-
-    }
+//    @PostConstruct
+//    public void init() {
+//        StudentEntity studentEntity = new StudentEntity();
+//        StudentEntity savedStudent = studentRepo.save(studentEntity);
+//
+//
+//        CourseEntity courseWithId = courseService.save(courseEntity);
+//        CourseAssignament courseAssignament = new CourseAssignament();
+//        courseAssignament.setCourseEntity(courseWithId);
+//        savedStudent.setCourseAssignaments(Arrays.asList(courseAssignament));
+//        studentRepo.save(savedStudent);
+//        System.out.println("");
+//
+//    }
 }
 
 

@@ -31,9 +31,8 @@ public class CourseService {
         courseRepo.deleteById(id);
     }
 
-    public Course findByCourseName(String courseName) {
-        CourseEntity courseEntity = courseRepo.findByCourseName(courseName);
-        return createCourse(courseEntity);
+    public CourseEntity findByCourseName(String courseName) {
+        return courseRepo.findByCourseName(courseName);
     }
 
     public List<Course> findAll() {
@@ -46,7 +45,7 @@ public class CourseService {
     }
 
 
-    private CourseEntity createCourseEntity(Course course) {
+    public CourseEntity createCourseEntity(Course course) {
         CourseEntity courseEntity = new CourseEntity();
         courseEntity.setId(course.getId());
         courseEntity.setCourseName(course.getCourseName());
@@ -61,9 +60,6 @@ public class CourseService {
         course.setStartDate(courseEntity.getStartDate());
         return course;
     }
-
-
-
 
 
     @PostConstruct

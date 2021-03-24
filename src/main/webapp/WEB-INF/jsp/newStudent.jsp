@@ -47,13 +47,8 @@
             <br>
 
             <span style="font-family:'Courier New', monospace; padding-right:58px";>Course:</span>
-            <select input type="int" class="form-control" name="courseId">
-                       <option>Select course</option>
-                       <option>1</option>
-                       <option>2</option>
-                       <option>3</option>
-                       <option>4</option>
-                       </select>
+            <input type="text" class="form-control" name="courseName">
+            </textarea>
 
             <br>
     </div>
