@@ -12,9 +12,7 @@
             <th>Second Name</th>
             <th>Phone Number</th>
             <th>E-mail</th>
-            <th>Course</th>
-            <th>Course name</th>
-                    </tr>
+            </tr>
         <c:forEach  items="${student}" var ="student">
             <tr>
                 <td>${student.surname}</td>

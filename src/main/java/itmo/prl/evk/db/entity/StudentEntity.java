@@ -7,6 +7,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Collection;
 
+
 @Entity
 @Data
 @Table(schema = "public", name = "student")

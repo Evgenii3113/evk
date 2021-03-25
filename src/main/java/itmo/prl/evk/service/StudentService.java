@@ -90,11 +90,11 @@ public class StudentService {
 //        StudentEntity studentEntity = new StudentEntity();
 //        StudentEntity savedStudent = studentRepo.save(studentEntity);
 //
-//
-//        CourseEntity courseWithId = courseService.save(courseEntity);
-//        CourseAssignament courseAssignament = new CourseAssignament();
-//        courseAssignament.setCourseEntity(courseWithId);
-//        savedStudent.setCourseAssignaments(Arrays.asList(courseAssignament));
+//CourseEntity courseEntity = new CourseEntity();
+//        CourseEntity courseWithId = courseRepo.save(courseEntity);
+//        CourseAssignment courseAssignment = new CourseAssignment();
+//        courseAssignment.setCourseEntity(courseWithId);
+//        savedStudent.setCourseAssignments(Arrays.asList(courseAssignment));
 //        studentRepo.save(savedStudent);
 //        System.out.println("");
 //
