@@ -28,10 +28,6 @@ public class CourseController {
         return courseService.findAll();
     }
 
-//    @GetMapping("/find")
-//    public Course readCourse(@RequestParam String courseName) {
-//        return courseService.findByCourseName(courseName);
-//    }
 
     @DeleteMapping("/remove/{id}")
     public String deleteCourse(@PathVariable Integer id) {

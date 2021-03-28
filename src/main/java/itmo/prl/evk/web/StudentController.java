@@ -47,11 +47,9 @@ public class StudentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/allstd")
-    public List<Student> findByCourse(@RequestParam Integer id) {
-        return studentService.findByCourse(id);
 
-    }
+
+
 
 
 }

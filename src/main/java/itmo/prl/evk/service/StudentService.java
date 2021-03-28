@@ -31,8 +31,7 @@ public class StudentService {
 
 
     public StudentEntity saveStudent(Student student) {
-        StudentEntity studentEntity = studentRepo.save(createStudentEntity(student));
-        return studentEntity;
+        return studentRepo.save(createStudentEntity(student));
     }
 
     public void deleteStudent(Integer id) {
@@ -50,15 +49,6 @@ public class StudentService {
         for (StudentEntity studentEntity : studentList) {
             students.add(createStudent(studentEntity));
         }
-        return students;
-    }
-
-    public List<Student> findByCourse(Integer id) {
-        List<Student> students = new ArrayList<>();
-//        List<StudentEntity> studentEntityList = studentRepo.findByCourse(id);
-//        for (StudentEntity studentEntity : studentEntityList) {
-//            students.add(createStudent(studentEntity));
-//        }
         return students;
     }
 
@@ -85,20 +75,7 @@ public class StudentService {
     }
 
 
-//    @PostConstruct
-//    public void init() {
-//        StudentEntity studentEntity = new StudentEntity();
-//        StudentEntity savedStudent = studentRepo.save(studentEntity);
-//
-//CourseEntity courseEntity = new CourseEntity();
-//        CourseEntity courseWithId = courseRepo.save(courseEntity);
-//        CourseAssignment courseAssignment = new CourseAssignment();
-//        courseAssignment.setCourseEntity(courseWithId);
-//        savedStudent.setCourseAssignments(Arrays.asList(courseAssignment));
-//        studentRepo.save(savedStudent);
-//        System.out.println("");
-//
-//    }
+
 }
 
 

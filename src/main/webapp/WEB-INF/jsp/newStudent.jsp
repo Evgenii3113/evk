@@ -16,6 +16,8 @@
 
         <div class="col-md-4">
 
+
+
             <span style="font-family:'Courier New', monospace; padding-right:48px";>Surname:</span>
             <input type="text" textarea class="form-control" name="surname">
         </textarea>
@@ -47,7 +49,13 @@
             <br>
 
             <span style="font-family:'Courier New', monospace; padding-right:58px";>Course:</span>
-            <input type="text" class="form-control" name="courseName">
+            <select type="text" textarea class="form-control" name="courseName">
+            <option>Select course</option>
+            <option>Management</option>
+            <option>Coach</option>
+            <option>Developer</option>
+            <option>Sports</option>
+            </select>
             </textarea>
 
             <br>

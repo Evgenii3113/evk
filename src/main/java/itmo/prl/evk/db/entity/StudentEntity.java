@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 
 @Entity
@@ -26,8 +27,8 @@ public class StudentEntity {
     private String email;
     @Column
     private String phone;
-    @JoinColumn (name = "student_id")
-    @OneToMany(cascade = CascadeType.ALL)
-    private Collection<CourseAssignment> courseAssignments;
+    @JoinColumn(name = "student_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    private CourseAssignment courseAssignment;
 
 }

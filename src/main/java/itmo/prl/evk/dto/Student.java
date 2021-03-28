@@ -1,6 +1,7 @@
 package itmo.prl.evk.dto;
 
 
+import itmo.prl.evk.db.entity.CourseAssignment;
 import itmo.prl.evk.db.entity.StudentEntity;
 import lombok.*;
 
@@ -15,8 +16,7 @@ public class Student extends StudentEntity {
     private String secondName;
     private String email;
     private String phone;
-    private List<String> courses;
-
+    private CourseAssignment courseAssignment;
 }
 
 

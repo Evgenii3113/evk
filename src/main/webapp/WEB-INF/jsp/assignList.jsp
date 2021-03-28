@@ -8,14 +8,19 @@
     <table border="5">
         <tr>
             <th>ID</th>
-            <th>Course ID</th>
-            <th>Student ID</th>
+            <th>Surname</th>
+            <th>Name</th>
+            <th>Second name</th>
+            <th>Course name</th>
             </tr>
         <c:forEach  items="${assign}" var ="assign">
             <tr>
                 <td>${assign.id}</td>
-                <td>${assign.courseId}</td>
-                <td>${assign.studentId}</td>
+                <td>${assign.studentEntity.surname}</td>
+                <td>${assign.studentEntity.name}</td>
+                <td>${assign.studentEntity.secondName}</td>
+                <td>${assign.courseEntity.courseName}</td>
+
 
             </tr>
         </c:forEach>
