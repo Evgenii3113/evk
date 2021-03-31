@@ -4,7 +4,10 @@ package itmo.prl.evk.db.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @Entity
@@ -20,7 +23,8 @@ public class CourseEntity {
     @Column(name = "course_name")
     private String courseName;
     @Column(name = "start_date")
-    private String startDate;
+    private LocalDate startDate;
+
 
 
 }

@@ -62,11 +62,11 @@ public class CourseService {
     }
 
 
-    @PostConstruct
-    public void init() {
-        Iterable<CourseEntity> courseEntities = courseRepo.findAll();
-        for (CourseEntity courseEntity : courseEntities) {
-            System.out.println(courseEntity.toString());
-        }
-    }
+//    @PostConstruct
+//    public void init() {
+//        Iterable<CourseEntity> courseEntities = courseRepo.findAll();
+//        for (CourseEntity courseEntity : courseEntities) {
+//            System.out.println(courseEntity.toString());
+//        }
+//    }
 }

@@ -23,6 +23,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 
+import java.time.LocalDate;
+
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -57,25 +59,27 @@ public class CourseControllerTest {
     }
 
     @Test
-    public void saveStd() throws Exception {
+    public void saveCourse() throws Exception {
         Course course = new Course();
-        course.setCourseName("Sports");
+        course.setCourseName("Builder");
+        course.setStartDate(LocalDate.of(2021,10,20));
         String content = objectMapper.writeValueAsString(course);
         System.out.println(content);
         String uri = "/courses/new";
         mockMvc.perform(post(uri)
                 .param("courseName", course.getCourseName())
+                .param("startDate", String.valueOf(course.getStartDate()))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(content))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.courseName").value("Sports"))
+                .andExpect(jsonPath("$.courseName").value("Builder"))
                 .andDo(document(uri));
     }
 
     @Test
     public void readCourse() throws Exception {
         Course course = new Course();
-        course.setCourseName("Coaching");
+        course.setCourseName("Coach");
         String content = objectMapper.writeValueAsString(course);
         System.out.println(content);
         String uri = "/courses/find";
@@ -84,14 +88,14 @@ public class CourseControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(content))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.courseName").value("Coaching"))
+                .andExpect(jsonPath("$.id").value(2))
                 .andDo(document(uri));
     }
 
     @Test
     public void deleteCourse() throws Exception {
         Course course = new Course();
-        course.setId(4);
+        course.setId(19);
         String content = objectMapper.writeValueAsString(course);
         System.out.println(content);
         String uri = "/courses/remove/{id}";

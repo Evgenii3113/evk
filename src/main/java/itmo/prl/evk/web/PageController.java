@@ -11,11 +11,15 @@ import itmo.prl.evk.dto.Student;
 import itmo.prl.evk.service.CourseService;
 import itmo.prl.evk.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDate;
+import java.util.*;
 
 
 @Controller
@@ -46,6 +50,7 @@ public class PageController {
         return "newStudent";
     }
 
+
     @RequestMapping(value = {"/newStudent"}, method = RequestMethod.POST)
     public String saveStudent(@RequestParam String surname, String name, String secondName, String phone, String email, String courseName, Model model, Model model1) {
         model.addAttribute("surname", surname)
@@ -66,9 +71,11 @@ public class PageController {
 
         CourseAssignment courseAssignment = new CourseAssignment();
         courseAssignment.setCourseEntity(courseEntity);
-        courseAssignment.setStudentEntity(studentEntity);
-
+        studentEntity.setCourseAssignments(Arrays.asList(courseAssignment));
         courseAssignmentRepo.save(courseAssignment);
+
+
+
 
         return "redirect:/studentList";
     }
@@ -85,21 +92,21 @@ public class PageController {
     }
 
     @RequestMapping(value = {"/newCourse"}, method = RequestMethod.POST)
-    public String saveCourse(@RequestParam String courseName, String startDate, Model model) {
+    public String saveCourse(@RequestParam String courseName, @DateTimeFormat (iso = DateTimeFormat.ISO.DATE) LocalDate startDate, Model model) {
         model.addAttribute("courseName", courseName)
                 .addAttribute("startDate", startDate);
         Course course = new Course();
         course.setCourseName(courseName.trim());
-        course.setStartDate(startDate.trim());
+        course.setStartDate(startDate);
         courseService.saveCourse(course);
         return "redirect:/courseList";
     }
 
-        @RequestMapping(value = {"/assignList"}, method = RequestMethod.GET)
-        public String viewAssignmentList(Model model) {
-            model.addAttribute("assign", courseAssignmentRepo.findAll());
-            return "assignList";
-        }
-
+    @RequestMapping(value = {"/assignList"}, method = RequestMethod.GET)
+    public String viewAssignmentList(Model model) {
+        model.addAttribute("assign", courseAssignmentRepo.findAll());
+        return "assignList";
     }
+
+}
 

@@ -3,8 +3,12 @@ package itmo.prl.evk.web;
 
 import itmo.prl.evk.db.entity.CourseEntity;
 import itmo.prl.evk.dto.Course;
+import itmo.prl.evk.dto.Student;
 import itmo.prl.evk.service.CourseService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.List;
 
@@ -19,7 +23,7 @@ public class CourseController {
     }
 
     @PostMapping("/new")
-    public CourseEntity saveStd(@RequestBody Course course) {
+    public CourseEntity saveCourse(@RequestBody Course course) {
         return courseService.saveCourse(course);
     }
 
@@ -28,10 +32,15 @@ public class CourseController {
         return courseService.findAll();
     }
 
+    @GetMapping("/find")
+    public CourseEntity readCourse(@RequestParam String courseName) {
+        return  courseService.findByCourseName(courseName);
+
+    }
 
     @DeleteMapping("/remove/{id}")
-    public String deleteCourse(@PathVariable Integer id) {
+    public ResponseEntity deleteCourse (@PathVariable Integer id) {
         courseService.deleteCourse(id);
-        return "Course removed";
+        return new ResponseEntity<>("Course removed", HttpStatus.OK);
     }
 }

@@ -12,4 +12,7 @@ public interface StudentRepo extends CrudRepository<StudentEntity, Integer> {
 
     StudentEntity findBySurname(String surname);
 
+
+
+
 }

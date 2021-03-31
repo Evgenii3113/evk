@@ -12,6 +12,7 @@
             <th>Name</th>
             <th>Second name</th>
             <th>Course name</th>
+            <th>Start date</th>
             </tr>
         <c:forEach  items="${assign}" var ="assign">
             <tr>
@@ -20,6 +21,7 @@
                 <td>${assign.studentEntity.name}</td>
                 <td>${assign.studentEntity.secondName}</td>
                 <td>${assign.courseEntity.courseName}</td>
+                <td>${assign.courseEntity.startDate}</td>
 
 
             </tr>

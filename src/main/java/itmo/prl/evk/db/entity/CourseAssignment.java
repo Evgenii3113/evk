@@ -3,6 +3,7 @@ package itmo.prl.evk.db.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Data

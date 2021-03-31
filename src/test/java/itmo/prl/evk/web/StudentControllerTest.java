@@ -58,7 +58,7 @@ public class StudentControllerTest {
     @Test
     public void readStd() throws Exception {
         Student student = new Student();
-        student.setSurname("Smirnov");
+        student.setSurname("Ivanov");
         String content = objectMapper.writeValueAsString(student);
         System.out.println(content);
         String uri = "/students/find";
@@ -67,7 +67,7 @@ public class StudentControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(content))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Egor"))
+                .andExpect(jsonPath("$.name").value("Petr"))
                 .andDo(document(uri));
     }
 
@@ -75,11 +75,11 @@ public class StudentControllerTest {
     @Test
     public void saveStd() throws Exception {
         Student student = new Student();
-        student.setSurname("Smirnov");
+        student.setSurname("Aronov");
         student.setName("Igor");
         student.setSecondName("Girovich");
         student.setPhone("89213564585");
-        student.setEmail("smi@ya.ru");
+        student.setEmail("sara@ya.ru");
         String content = objectMapper.writeValueAsString(student);
         System.out.println(content);
         String uri = "/students/new";
@@ -94,7 +94,7 @@ public class StudentControllerTest {
     @Test
     public void removeStd() throws Exception {
         Student student = new Student();
-        student.setId(4);
+        student.setId(36);
         String content = objectMapper.writeValueAsString(student);
         System.out.println(content);
         String uri = "/students/remove/{id}";

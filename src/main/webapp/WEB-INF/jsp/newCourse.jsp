@@ -23,7 +23,7 @@
             <br>
 
             <span style="font-family:'Courier New', monospace; padding-right:10px";>Start date:</span>
-            <input type="text" textarea class="form-control" name="startDate">
+            <input type="date" textarea class="form-control" name="startDate">
             </textarea>
 
             <br>
