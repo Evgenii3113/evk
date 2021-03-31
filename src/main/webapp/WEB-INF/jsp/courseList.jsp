@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 
-<h3>COURSE LIST</h3>
+<h3>COURSES</h3>
 
 <br/><br/>
 <div>

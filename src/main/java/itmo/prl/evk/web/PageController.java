@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,15 +29,20 @@ public class PageController {
     public final StudentService studentService;
     public final CourseService courseService;
 
-    public PageController(StudentService studentService, CourseService courseService) {
+    public PageController(StudentService studentService, CourseService courseService, StudentRepo studentRepo, CourseAssignmentRepo courseAssignmentRepo) {
         this.studentService = studentService;
         this.courseService = courseService;
+        this.studentRepo = studentRepo;
+        this.courseAssignmentRepo = courseAssignmentRepo;
     }
 
-    @Autowired
-    StudentRepo studentRepo;
-    @Autowired
-    CourseAssignmentRepo courseAssignmentRepo;
+    final StudentRepo studentRepo;
+    final CourseAssignmentRepo courseAssignmentRepo;
+
+    @GetMapping({"/"})
+    public String firstPage() {
+        return "myFirst";
+    }
 
 
     @RequestMapping(value = {"/studentList"}, method = RequestMethod.GET)
@@ -44,6 +50,7 @@ public class PageController {
         model.addAttribute("student", studentService.findAll());
         return "studentList";
     }
+
 
     @RequestMapping(value = {"/newStudent"}, method = RequestMethod.GET)
     public String createNewStudent() {
@@ -77,7 +84,7 @@ public class PageController {
 
 
 
-        return "redirect:/studentList";
+        return "redirect:/assignList";
     }
 
     @RequestMapping(value = {"/courseList"}, method = RequestMethod.GET)
@@ -107,6 +114,27 @@ public class PageController {
         model.addAttribute("assign", courseAssignmentRepo.findAll());
         return "assignList";
     }
+
+    @RequestMapping(value = {"/findStudent"}, method = RequestMethod.GET)
+    public String findStudent() {
+        return "findStudent";
+    }
+
+    @RequestMapping(value = {"/findStudent"}, method = RequestMethod.POST )
+    public String findStudent (@RequestParam String surname, Model model, Model model1){
+        model.addAttribute("surname", surname);
+        Iterable<StudentEntity>studentEntityList = studentRepo.findAll();
+        for (StudentEntity studentEntity : studentEntityList) {
+            if (studentEntity.getSurname().equals(surname)) {
+                model1.addAttribute("student", studentService.createStudent(studentEntity));
+            }
+        }
+return "redirect:/findStud";
+            }
+
+
+
+
 
 }
 

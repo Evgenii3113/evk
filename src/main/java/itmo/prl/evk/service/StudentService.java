@@ -69,7 +69,7 @@ public class StudentService {
         return studentEntity;
     }
 
-    private Student createStudent(StudentEntity studentEntity) {
+    public Student createStudent(StudentEntity studentEntity) {
         Student student = new Student();
         return (Student) getStudentEntity(student, studentEntity.getId(), studentEntity.getName(), studentEntity.getSurname(), studentEntity.getSecondName(), studentEntity.getEmail(), studentEntity.getPhone(), student);
     }
