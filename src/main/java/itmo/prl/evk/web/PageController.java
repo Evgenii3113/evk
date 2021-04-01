@@ -14,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -82,8 +79,6 @@ public class PageController {
         courseAssignmentRepo.save(courseAssignment);
 
 
-
-
         return "redirect:/assignList";
     }
 
@@ -99,7 +94,7 @@ public class PageController {
     }
 
     @RequestMapping(value = {"/newCourse"}, method = RequestMethod.POST)
-    public String saveCourse(@RequestParam String courseName, @DateTimeFormat (iso = DateTimeFormat.ISO.DATE) LocalDate startDate, Model model) {
+    public String saveCourse(@RequestParam String courseName, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate, Model model) {
         model.addAttribute("courseName", courseName)
                 .addAttribute("startDate", startDate);
         Course course = new Course();
@@ -120,20 +115,26 @@ public class PageController {
         return "findStudent";
     }
 
-    @RequestMapping(value = {"/findStudent"}, method = RequestMethod.POST )
-    public String findStudent (@RequestParam String surname, Model model, Model model1){
+
+    @RequestMapping(value = {"/findStudent"}, method = RequestMethod.POST)
+    public String findStudent(@RequestParam String surname, Model model) {
         model.addAttribute("surname", surname);
-        Iterable<StudentEntity>studentEntityList = studentRepo.findAll();
-        for (StudentEntity studentEntity : studentEntityList) {
-            if (studentEntity.getSurname().equals(surname)) {
-                model1.addAttribute("student", studentService.createStudent(studentEntity));
-            }
-        }
-return "redirect:/findStud";
-            }
+        Student student = studentService.findBySurname(surname);
+
+        model.addAttribute("student", student);
+        return "redirect:/findStud/" + student.getId();
+
+    }
+
+    @RequestMapping(value = {"/students/find/"}, method = RequestMethod.GET)
+    public String findStud(@PathVariable Integer id, Model model) {
+        model.addAttribute("student", studentRepo.findById(id));
 
 
 
+
+        return "findStud";
+    }
 
 
 }
