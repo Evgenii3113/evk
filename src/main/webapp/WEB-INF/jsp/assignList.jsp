@@ -16,7 +16,7 @@
             </tr>
         <c:forEach  items="${assign}" var ="assign">
             <tr>
-                <td>${assign.id}</td>
+                <td>${assign.studentEntity.id}</td>
                 <td>${assign.studentEntity.surname}</td>
                 <td>${assign.studentEntity.name}</td>
                 <td>${assign.studentEntity.secondName}</td>

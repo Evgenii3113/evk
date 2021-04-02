@@ -21,9 +21,7 @@
 <a href="/newCourse">Create course</a>
 <br/>
 <br/>
-<a href="/students/find">Find student</a>
-<input type="text" textarea class="form-control" name="surname">
-</textarea>
+<a href="/findStudent">Find student</a>
 <br/>
 <br/>
 <a href="/newCourse">Find course</a>

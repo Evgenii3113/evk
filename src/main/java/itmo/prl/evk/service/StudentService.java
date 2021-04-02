@@ -1,20 +1,14 @@
 package itmo.prl.evk.service;
 
 
-import itmo.prl.evk.db.entity.CourseAssignment;
-import itmo.prl.evk.db.entity.CourseEntity;
 import itmo.prl.evk.db.entity.StudentEntity;
 import itmo.prl.evk.db.repo.CourseRepo;
 import itmo.prl.evk.db.repo.StudentRepo;
-import itmo.prl.evk.dto.Course;
 import itmo.prl.evk.dto.Student;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +37,7 @@ public class StudentService {
         return createStudent(studentEntity);
     }
 
-    public List<Student> findAll() {
+     public List<Student> findAll() {
         List<Student> students = new ArrayList<>();
         Iterable<StudentEntity> studentList = studentRepo.findAll();
         for (StudentEntity studentEntity : studentList) {
@@ -75,7 +69,9 @@ public class StudentService {
     }
 
 
-
+    public Optional<StudentEntity> findById(Integer id) {
+        return studentRepo.findById(id);
+    }
 }
 
 

@@ -10,7 +10,6 @@ import itmo.prl.evk.dto.Course;
 import itmo.prl.evk.dto.Student;
 import itmo.prl.evk.service.CourseService;
 import itmo.prl.evk.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +25,8 @@ public class PageController {
     public final StudentService studentService;
     public final CourseService courseService;
 
-    public PageController(StudentService studentService, CourseService courseService, StudentRepo studentRepo, CourseAssignmentRepo courseAssignmentRepo) {
+    public PageController(StudentService studentService, CourseService courseService, StudentRepo studentRepo,
+                          CourseAssignmentRepo courseAssignmentRepo) {
         this.studentService = studentService;
         this.courseService = courseService;
         this.studentRepo = studentRepo;
@@ -56,7 +56,8 @@ public class PageController {
 
 
     @RequestMapping(value = {"/newStudent"}, method = RequestMethod.POST)
-    public String saveStudent(@RequestParam String surname, String name, String secondName, String phone, String email, String courseName, Model model, Model model1) {
+    public String saveStudent(String surname, String name, String secondName, String phone, String email,
+                              String courseName, Model model) {
         model.addAttribute("surname", surname)
                 .addAttribute("name", name)
                 .addAttribute("secondName", secondName)
@@ -70,7 +71,7 @@ public class PageController {
         student.setEmail(email.trim());
         StudentEntity studentEntity = studentService.saveStudent(student);
 
-        model1.addAttribute("courseName", courseName);
+        model.addAttribute("courseName", courseName);
         CourseEntity courseEntity = courseService.findByCourseName(courseName);
 
         CourseAssignment courseAssignment = new CourseAssignment();
@@ -94,7 +95,9 @@ public class PageController {
     }
 
     @RequestMapping(value = {"/newCourse"}, method = RequestMethod.POST)
-    public String saveCourse(@RequestParam String courseName, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate, Model model) {
+    public String saveCourse(@RequestParam String courseName,
+                             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                             Model model) {
         model.addAttribute("courseName", courseName)
                 .addAttribute("startDate", startDate);
         Course course = new Course();
@@ -121,20 +124,41 @@ public class PageController {
         model.addAttribute("surname", surname);
         Student student = studentService.findBySurname(surname);
 
-        model.addAttribute("student", student);
-        return "redirect:/findStud/" + student.getId();
+
+        model.addAttribute("id", student.getId())
+                .addAttribute("surname", student.getSurname())
+                .addAttribute("name", student.getName())
+                .addAttribute("secondName", student.getSecondName())
+                .addAttribute("phone", student.getPhone())
+                .addAttribute("email", student.getEmail());
+
+
+        return "redirect:/findStud/" + student.getId() + "/" + student.getSurname() + "/" + student.getName() + "/"
+                + student.getSecondName() + "/" + student.getPhone() + "/" + student.getEmail();
 
     }
 
-    @RequestMapping(value = {"/students/find/"}, method = RequestMethod.GET)
-    public String findStud(@PathVariable Integer id, Model model) {
-        model.addAttribute("student", studentRepo.findById(id));
+    @RequestMapping(value = {"/findStud/{id}/{surname}/{name}/{secondName}/{phone}/{email}"}, method = RequestMethod.GET)
+    public String findStud(@PathVariable Integer id,
+                           @PathVariable String surname,
+                           @PathVariable String name,
+                           @PathVariable String secondName,
+                           @PathVariable String phone,
+                           @PathVariable String email,
+                           Model model) {
 
-
+        model.addAttribute("id", id)
+                .addAttribute("surname", surname)
+                .addAttribute("name", name)
+                .addAttribute("secondName", secondName)
+                .addAttribute("phone", phone)
+                .addAttribute("email", email);
 
 
         return "findStud";
     }
+
+
 
 
 }

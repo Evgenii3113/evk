@@ -7,14 +7,9 @@ import itmo.prl.evk.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.persistence.Entity;
 import java.util.List;
-
-import static org.springframework.http.HttpStatus.*;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/students")
@@ -39,10 +34,13 @@ public class StudentController {
         return studentService.findAll();
     }
 
-    @GetMapping("/find")
-    public Student readStd(@RequestParam String surname) {
-        return studentService.findBySurname(surname);
+
+    @GetMapping("/find/")
+    public Optional<StudentEntity> readStd(@PathVariable Integer id) {
+        return studentService.findById(id);
     }
+
+
 
     @DeleteMapping("/remove/{id}")
     public ResponseEntity deleteStd(@PathVariable Integer id) {

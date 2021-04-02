@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,32 +8,14 @@
     <link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
-<h3 class="hello-title">Find student</h3>
+<h4 class="hello-title">Found student</h4>
+<h5>ID : ${id}</h5>
+<h5>Surname : ${surname}</h5>
+<h5>Name : ${name}</h5>
+<h5>Second name : ${secondName}</h5>
+<h5>Phone : ${phone}</h5>
+<h5>E-mail : ${email}</h5>
 
-
-<table border="5">
-    <tr>
-        <th>ID</th>
-        <th>Surname</th>
-        <th>Name</th>
-        <th>Second Name</th>
-        <th>Phone Number</th>
-        <th>E-mail</th>
-
-    </tr>
-    <c:forEach  items="${student}" var ="student">
-        <tr>
-            <td>${student.id}</td>
-            <td>${student.surname}</td>
-            <td>${student.name}</td>
-            <td>${student.secondName}</td>
-            <td>${student.phone}</td>
-            <td>${student.email}</td>
-
-
-        </tr>
-    </c:forEach>
-</table>
 
 <script src="/js/main.js"></script>
 </body>
